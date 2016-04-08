@@ -28,9 +28,9 @@ class Navigation extends React.Component {
 
     return (
       <nav className="Navigation">
-        {agent === 'mobile' ? <div {... btnProps} /> : null}
+        {agent === 'mobile' ? <div {...btnProps} /> : null}
         <div className="Navigation-logo">
-          <Link {... logoProps}>
+          <Link {...logoProps}>
             <Logo />
           </Link>
         </div>
