@@ -7,15 +7,40 @@ class PostList extends React.Component {
 
 	static propTypes = {
 		'toggleFavorite': PropTypes.func,
-		'postList': PropTypes.any
+		'postList': PropTypes.any,
+		'visibilityFilter': PropTypes.string
 	}
 
-	shouldComponentUpdate() {
-		return true
+	constructor(props) {
+		super(props)
+		const {postList, visibilityFilter} = this.props
+		this.state = {
+			postList: this.getVisiblePostList(postList, visibilityFilter)
+		}
+	}
+
+	getVisiblePostList(postList, filter) {
+		switch (filter) {
+			case 'SHOW_ALL':
+				console.log('SHOW_ALL')
+				return postList
+			case 'SHOW_COMPLETED':
+				console.log('SHOW_COMPLETED')
+				return postList.filter(
+					p => p.completed
+				)
+			case 'SHOW_ACTIVE':
+				console.log('SHOW_ACTIVE')
+				return postList.filter(
+					p => !p.completed
+				)
+			default:
+				return postList
+		}
 	}
 
 	render() {
-		console.log('POST-LIST-COMPONENT: ', this.props)
+		// console.log('POST-LIST-COMPONENT: ', this.props)
 		const { toggleFavorite } = this.props
 		let { postList } = this.props
 

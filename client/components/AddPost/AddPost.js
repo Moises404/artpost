@@ -9,7 +9,7 @@ class AddPost extends React.Component {
 
 	render() {
 		let input
-		console.log('ADD-POST-COMPONENT: ', this.props)
+		// console.log('ADD-POST-COMPONENT: ', this.props)
 		const { addPost } = this.props
 		return (
 			<div className="AddPost">
