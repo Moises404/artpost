@@ -27,7 +27,6 @@ class FilterLink extends React.Component {
 	}
 
 	render() {
-		// console.log('FILTER-LINK-COMPONENT: ', this.props)
 		const { setVisibilityFilter, filter, children} = this.props
 		const { active } = this.state
 

@@ -19,6 +19,13 @@ class PostList extends React.Component {
 		}
 	}
 
+	componentWillReceiveProps(nextProps) {
+		const {postList, visibilityFilter} = nextProps
+		this.setState({
+			postList: this.getVisiblePostList(postList, visibilityFilter)
+		})
+	}
+
 	getVisiblePostList(postList, filter) {
 		switch (filter) {
 			case 'SHOW_ALL':
@@ -40,9 +47,8 @@ class PostList extends React.Component {
 	}
 
 	render() {
-		// console.log('POST-LIST-COMPONENT: ', this.props)
 		const { toggleFavorite } = this.props
-		let { postList } = this.props
+		let { postList } = this.state
 
 		if (!postList || isEmpty(postList)) {
 			console.log('POST-LIST: ', postList)
