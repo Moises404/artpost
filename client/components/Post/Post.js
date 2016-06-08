@@ -15,8 +15,8 @@ class Post extends React.Component {
 
 	componentWillReceiveProps(nextProps) {
 		console.log('COMPONENT-WILL-RECEIVE-PROPS: ')
-		console.log(nextProps.postId);
-		console.log(nextProps.currentPostId);
+		console.log(nextProps.postId)
+		console.log(nextProps.currentPostId)
 	}
 
 
@@ -30,24 +30,26 @@ class Post extends React.Component {
 			'complete': completed
 		})
 
-		// console.log(this.props)
-		// console.log('POST: ', post)
 		console.log('POST-ID: ', postId)
 		console.log('CURRENT-POST-ID: ', currentPostId)
 
-		let isSelected = false
+		let isPostSelected = false
+		// let isTextSelected = false
 
 		if (currentPostId === postId) {
-			isSelected = true
+			isPostSelected = true
 		}
 
+		// if (currentTextId === textId) {
+		// 	isTextSelected = true
+		// }
 
 		return (
 			<div className={PostClasses}
 				onClick={onClick}
 				style={{
 					borderColor:
-						isSelected ?
+						isPostSelected ?
 							'lime' :
 							'black',
 					borderWidth: '4px'

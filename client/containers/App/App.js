@@ -1,8 +1,9 @@
 import * as AppActions from '../../actions/AppActions'
-import * as PostActions from '../../actions/PostActions'
+import * as PostActions from '../../redux/modules/post'
+import * as DashboardActions from '../../redux/modules/dashboard'
+
 import React, { Component, PropTypes, cloneElement } from 'react'
 import { bindActionCreators } from 'redux'
-import * as DashboardActions from '../../redux/modules/dashboard'
 import { connect } from 'react-redux'
 import cn from 'classnames'
 import { isEqual, merge } from 'lodash'

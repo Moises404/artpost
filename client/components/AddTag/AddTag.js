@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react'
 
-class AddText extends React.Component {
-	static displayName = 'AddPost'
+class AddTag extends React.Component {
+	static displayName = 'AddTag'
 
 	static propTypes = {
-		'addTextToPost': PropTypes.func
+		'addTagToPost': PropTypes.func
 	}
 
 	handleSubmit(event, node, cb) {
@@ -17,29 +17,29 @@ class AddText extends React.Component {
 
 	render() {
 		let input
-		const { addTextToPost } = this.props
+		const { addTagToPost } = this.props
 		// onKeyDown={this.handleSubmit(event, input)}
 		return (
-			<div className="AddText">
+			<div className="AddTag">
 				<input
 					ref={node => {
 						input = node
 					}}
 					onKeyDown={(event) => {
 						this.handleSubmit(event, input.value, () => {
-							addTextToPost(input.value)
+							addTagToPost(input.value)
 							input.value = ''
 						})
 					}}/>
 				<button onClick={() => {
-					addTextToPost(input.value)
+					addTagToPost(input.value)
 					input.value = ''
 				}}>
-					Add Text
+					Add Tag
 				</button>
 			</div>
 		)
 	}
 }
 
-export default AddText
+export default AddTag

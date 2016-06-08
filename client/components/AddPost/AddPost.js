@@ -4,8 +4,7 @@ class AddPost extends React.Component {
 	static displayName = 'AddPost'
 
 	static propTypes = {
-		'addPost': PropTypes.func,
-		'selectPost': PropTypes.func
+		'addPost': PropTypes.func
 	}
 
 	handleSubmit(event, node, cb) {

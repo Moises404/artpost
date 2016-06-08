@@ -1,5 +1,6 @@
 const SET_CURRENT_POST = 'SET_CURRENT_POST'
 const SET_CURRENT_TEXT = 'SET_CURRENT_TEXT'
+const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER'
 
 export function setCurrentPost(postId) {
   return {
@@ -13,6 +14,13 @@ export function setCurrentText(postId, textId) {
     type: SET_CURRENT_TEXT,
     postId,
     textId
+  }
+}
+
+export function visibilityFilter(filter = 'SHOW_ALL') {
+  return {
+    type: SET_VISIBILITY_FILTER,
+    filter
   }
 }
 
@@ -35,6 +43,11 @@ export default function dashboard(state = initialState, action) {
         ...state,
         currentPostId: action.postId,
         currentTextId: action.textId
+      }
+    case SET_VISIBILITY_FILTER :
+      return {
+        ...state,
+        visibilitFilter: action.filter
       }
     default :
       return state

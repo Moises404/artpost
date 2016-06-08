@@ -2,7 +2,7 @@ import * as types from '../constants/ActionTypes'
 
 const initialPostState = {}
 
-export default function todo(state = initialPostState, action) {
+export default function post(state = initialPostState, action) {
   switch (action.type) {
     case types.ADD_POST :
       return {
