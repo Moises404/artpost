@@ -7,28 +7,56 @@ class Post extends React.Component {
 	static propTypes = {
 		'onClick': PropTypes.func,
 		'completed': PropTypes.bool,
-		'text': PropTypes.string
+		'text': PropTypes.string,
+		'post': PropTypes.func,
+		'postId': PropTypes.number,
+		'currentPostId': PropTypes.any
+	}
+
+	componentWillReceiveProps(nextProps) {
+		console.log('COMPONENT-WILL-RECEIVE-PROPS: ')
+		console.log(nextProps.postId);
+		console.log(nextProps.currentPostId);
 	}
 
 
 	render() {
-		const {onClick, completed, text} = this.props
+		const {
+			onClick, completed,
+			text, postId,
+			currentPostId } = this.props
+
 		const PostClasses = cn('Post', {
 			'complete': completed
 		})
 
+		// console.log(this.props)
+		// console.log('POST: ', post)
+		console.log('POST-ID: ', postId)
+		console.log('CURRENT-POST-ID: ', currentPostId)
+
+		let isSelected = false
+
+		if (currentPostId === postId) {
+			isSelected = true
+		}
+
+
 		return (
-			<li className={PostClasses}
+			<div className={PostClasses}
 				onClick={onClick}
 				style={{
-					textDecoration:
-						completed ?
-							'line-through' :
-							'none'
-				}}
-				>
-				{text}
-			</li>
+					borderColor:
+						isSelected ?
+							'lime' :
+							'black',
+					borderWidth: '4px'
+				}}>
+				<div className="Text"
+					onClick={() => console.log('selectText')}>
+					{text}
+				</div>
+			</div>
 		)
 	}
 }

@@ -36,7 +36,7 @@ class AddPost extends React.Component {
 					addPost(input.value)
 					input.value = ''
 				}}>
-					Add Post
+					Add Text
 				</button>
 			</div>
 		)

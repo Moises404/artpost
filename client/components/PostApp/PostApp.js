@@ -1,17 +1,15 @@
 import React from 'react'
-import AddPost from '../AddPost/AddPost'
+import Toolbar from '../Toolbar/Toolbar'
 import PostList from '../PostList/PostList'
-import Footer from '../Footer/Footer'
 
 class PostApp extends React.Component {
 	static displayName = 'PostApp'
 
 	render() {
 		return (
-			<div>
-				<AddPost {...this.props}/>
+			<div className="PostApp">
+				<Toolbar {...this.props} />
 				<PostList {...this.props}/>
-				<Footer {...this.props}/>
 			</div>
 		)
 	}

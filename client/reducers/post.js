@@ -1,21 +1,37 @@
 import * as types from '../constants/ActionTypes'
 
-export default function todo(state = {}, action) {
+const initialPostState = {}
+
+export default function todo(state = initialPostState, action) {
   switch (action.type) {
-    case types.ADD_POST:
+    case types.ADD_POST :
       return {
-        id: action.id,
-        text: action.text,
-        completed: false
+        postId: action.postId,
+        text: action.text
       }
-    case types.TOGGLE_FAVORITE:
-      if (state.id !== action.id) {
+    case types.SELECT_POST :
+      console.log('SELECT_POST')
+      console.log(action.postId)
+      return {
+        currentPostId: action.postId
+      }
+    case types.SELECT_TEXT_IN_POST :
+      return {
+        currentTextId: action.textId
+      }
+    case types.TOGGLE_FAVORITE :
+      if (state.postId !== action.postId) {
         return state
       }
 
       return {
         ...state,
         completed: !state.completed
+      }
+    case types.ADD_TEXT_TO_POST :
+      return {
+        textId: action.textId,
+        text: action.text
       }
     default:
       return state

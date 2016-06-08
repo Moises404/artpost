@@ -5,6 +5,7 @@ import client from './client'
 import post from './post'
 import postList from './postList'
 import visibilityFilter from './visibilityFilter'
+import dashboard from '../redux/modules/dashboard'
 
 export default combineReducers({
   app,
@@ -12,5 +13,6 @@ export default combineReducers({
   layout,
   post,
   postList,
-  visibilityFilter
+  visibilityFilter,
+  dashboard
 })

@@ -1,10 +1,11 @@
 import * as AppActions from '../../actions/AppActions'
 import * as PostActions from '../../actions/PostActions'
-import React, {Component, PropTypes, cloneElement} from 'react'
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
+import React, { Component, PropTypes, cloneElement } from 'react'
+import { bindActionCreators } from 'redux'
+import * as DashboardActions from '../../redux/modules/dashboard'
+import { connect } from 'react-redux'
 import cn from 'classnames'
-import {isEqual, merge} from 'lodash'
+import { isEqual, merge } from 'lodash'
 import Navigation from '../../components/Navigation/Navigation'
 
 export class App extends Component {
@@ -18,7 +19,9 @@ export class App extends Component {
     'children': PropTypes.object.isRequired,
     'post': PropTypes.object,
     'postList': PropTypes.any,
-    'visibilityFilter': PropTypes.string
+    'visibilityFilter': PropTypes.string,
+    'dashboard': PropTypes.object,
+    'dashboardActions': PropTypes.object
   }
 
   static childContextTypes = {
@@ -36,12 +39,15 @@ export class App extends Component {
   }
 
   render() {
-    console.log('APP', this.props)
-    const {app, children, layout, actions, postActions, 
-        client, post, postList, visibilityFilter} = this.props
-    const postProps = {post, postList, visibilityFilter}
+    console.log('APP-COMP', this.props)
+    const {app, children, layout, actions, postActions,
+        client, post, postList, visibilityFilter, dashboard,
+        dashboardActions
+         } = this.props
+    const postProps = { post, postList,
+        visibilityFilter, dashboard}
     const navProps = {actions, client, layout}
-    const childProps = merge(app, client, postActions, postProps)
+    const childProps = merge(app, client, postActions, postProps, dashboardActions)
     const appClasses = cn('App', `--${client.agent}`)
 
     return (
@@ -62,7 +68,8 @@ function mapStateToProps(state) {
     'layout': state.layout,
     'post': state.post,
     'postList': state.postList,
-    'visibilityFilter': state.visibilityFilter
+    'visibilityFilter': state.visibilityFilter,
+    'dashboard': state.dashboard
   }
 }
 
@@ -70,6 +77,7 @@ function mapDispatchToProps(dispatch) {
   return {
     'actions': bindActionCreators(AppActions, dispatch),
     'postActions': bindActionCreators(PostActions, dispatch),
+    'dashboardActions': bindActionCreators(DashboardActions, dispatch)
   }
 }
 
