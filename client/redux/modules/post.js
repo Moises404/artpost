@@ -54,13 +54,15 @@ export function addTagToPost(postId, tag) {
 
 export function addPost(text) {
   const postId = nextPostId++
+  const textId = nextTextId++
   return (dispatch) => ([
     dispatch(setCurrentPost(postId)),
+    dispatch(selectTextInPost(postId, textId)),
+    dispatch(addTextToPost(postId, textId, text)),
     dispatch({
       'type': ADD_POST,
       postId,
       'currentPostId': postId,
-      text
     })
   ]
   )
@@ -90,8 +92,8 @@ export default function post(state = initialPostState, action) {
   switch (action.type) {
     case ADD_POST :
       return {
-        postId: action.postId,
-        text: action.textId
+        ...state,
+        postId: action.postId
       }
     case SELECT_POST :
       console.log('SELECT_POST')

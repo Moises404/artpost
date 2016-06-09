@@ -5,12 +5,15 @@ class Post extends React.Component {
 	static displayName = 'Post'
 
 	static propTypes = {
-		'onClick': PropTypes.func,
+		'onPostClick': PropTypes.func,
+		'onTextClick': PropTypes.func,
 		'completed': PropTypes.bool,
 		'text': PropTypes.string,
 		'post': PropTypes.func,
 		'postId': PropTypes.number,
-		'currentPostId': PropTypes.any
+		'textId': PropTypes.number,
+		'currentPostId': PropTypes.any,
+		'currentTextId': PropTypes.any
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -22,9 +25,9 @@ class Post extends React.Component {
 
 	render() {
 		const {
-			onClick, completed,
-			text, postId,
-			currentPostId } = this.props
+			onPostClick, onTextClick,
+			completed, text, postId, textId,
+			currentPostId, currentTextId } = this.props
 
 		const PostClasses = cn('Post', {
 			'complete': completed
@@ -32,21 +35,22 @@ class Post extends React.Component {
 
 		console.log('POST-ID: ', postId)
 		console.log('CURRENT-POST-ID: ', currentPostId)
+		console.log('CURRENT-TEXT-ID: ', currentTextId)
 
 		let isPostSelected = false
-		// let isTextSelected = false
+		let isTextSelected = false
 
 		if (currentPostId === postId) {
 			isPostSelected = true
 		}
 
-		// if (currentTextId === textId) {
-		// 	isTextSelected = true
-		// }
+		if (currentTextId === textId) {
+			isTextSelected = true
+		}
 
 		return (
 			<div className={PostClasses}
-				onClick={onClick}
+				onClick={onPostClick}
 				style={{
 					borderColor:
 						isPostSelected ?
@@ -55,7 +59,14 @@ class Post extends React.Component {
 					borderWidth: '4px'
 				}}>
 				<div className="Text"
-					onClick={() => console.log('selectText')}>
+					onClick={onTextClick}
+					style={{
+						borderColor:
+							isTextSelected ?
+								'lime' :
+								'black',
+						borderWidth: '4px'
+					}}>
 					{text}
 				</div>
 			</div>

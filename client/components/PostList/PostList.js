@@ -7,6 +7,7 @@ class PostList extends React.Component {
 
 	static propTypes = {
 		'setCurrentPost': PropTypes.func,
+		'selectTextInPost': PropTypes.func,
 		'postList': PropTypes.any,
 		'visibilityFilter': PropTypes.string,
 		'dashboard': PropTypes.object
@@ -51,7 +52,7 @@ class PostList extends React.Component {
 	render() {
 		console.log('POST-LIST-COMP: ')
 		console.log(this.props)
-		const { setCurrentPost, dashboard } = this.props
+		const { setCurrentPost, selectTextInPost, dashboard } = this.props
 		let { postList } = this.state
 
 		if (!postList || isEmpty(postList)) {
@@ -66,7 +67,8 @@ class PostList extends React.Component {
 						key={post.postId}
 						{...post}
 						{...dashboard}
-						onClick={() => setCurrentPost(post.postId)}
+						onTextClick={() => selectTextInPost(post.textId)}
+						onPostClick={() => setCurrentPost(post.postId)}
 					/>
 				)}
 			</div>
