@@ -1,4 +1,5 @@
-import * as AppActions from '../../actions/AppActions'
+import * as AppActions from '../../redux/modules/app'
+import * as LayoutActions from '../../redux/modules/layout'
 import * as PostActions from '../../redux/modules/post'
 import * as DashboardActions from '../../redux/modules/dashboard'
 
@@ -9,17 +10,20 @@ import cn from 'classnames'
 import { isEqual, merge } from 'lodash'
 import Navigation from '../../components/Navigation/Navigation'
 
-export class App extends Component {
+// 'app': PropTypes.object.isRequired,
+
+export class AppContainer extends Component {
+  static displayName = 'AppContainer'
+
   static propTypes = {
     'params': PropTypes.object.isRequired,
-    'actions': PropTypes.object.isRequired,
+    'appActions': PropTypes.object.isRequired,
     'postActions': PropTypes.object.isRequired,
+    'layoutActions': PropTypes.object.isRequired,
     'layout': PropTypes.object.isRequired,
-    'app': PropTypes.object.isRequired,
     'client': PropTypes.object.isRequired,
     'children': PropTypes.object.isRequired,
     'post': PropTypes.object,
-    'postList': PropTypes.any,
     'visibilityFilter': PropTypes.string,
     'dashboard': PropTypes.object,
     'dashboardActions': PropTypes.object
@@ -41,19 +45,23 @@ export class App extends Component {
 
   render() {
     console.log('APP-COMP', this.props)
-    const {app, children, layout, actions, postActions,
-        client, post, postList, visibilityFilter, dashboard,
+
+    // app,
+    const {children, layout, layoutActions, appActions, postActions,
+        client, post, visibilityFilter, dashboard,
         dashboardActions
          } = this.props
-    const postProps = { post, postList,
+
+    const postProps = { post,
         visibilityFilter, dashboard}
-    const navProps = {actions, client, layout}
-    const childProps = merge(app, client, postActions, postProps, dashboardActions)
+
+    const navProps = {appActions, layoutActions, client, layout}
+    const childProps = merge(appActions, client, postActions, postProps, dashboardActions)
     const appClasses = cn('App', `--${client.agent}`)
 
     return (
       <div className={appClasses}>
-        <Navigation {... navProps} />
+        <Navigation { ...navProps } />
         <div className="App-content">
           {cloneElement(children, childProps)}
         </div>
@@ -68,7 +76,6 @@ function mapStateToProps(state) {
     'client': state.client,
     'layout': state.layout,
     'post': state.post,
-    'postList': state.postList,
     'visibilityFilter': state.visibilityFilter,
     'dashboard': state.dashboard
   }
@@ -76,7 +83,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    'actions': bindActionCreators(AppActions, dispatch),
+    'appActions': bindActionCreators(AppActions, dispatch),
+    'layoutActions': bindActionCreators(LayoutActions, dispatch),
     'postActions': bindActionCreators(PostActions, dispatch),
     'dashboardActions': bindActionCreators(DashboardActions, dispatch)
   }
@@ -85,4 +93,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(App)
+)(AppContainer)

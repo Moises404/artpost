@@ -16,10 +16,11 @@ class Post extends React.Component {
 		'currentTextId': PropTypes.any
 	}
 
-	componentWillReceiveProps(nextProps) {
-		console.log('COMPONENT-WILL-RECEIVE-PROPS: ')
-		console.log(nextProps.postId)
-		console.log(nextProps.currentPostId)
+	componentWillReceiveProps() {
+		// nextProps
+		// console.log('COMPONENT-WILL-RECEIVE-PROPS: ')
+		// console.log(nextProps.postId)
+		// console.log(nextProps.currentPostId)
 	}
 
 
@@ -33,9 +34,9 @@ class Post extends React.Component {
 			'complete': completed
 		})
 
-		console.log('POST-ID: ', postId)
-		console.log('CURRENT-POST-ID: ', currentPostId)
-		console.log('CURRENT-TEXT-ID: ', currentTextId)
+		// console.log('POST-ID: ', postId)
+		// console.log('CURRENT-POST-ID: ', currentPostId)
+		// console.log('CURRENT-TEXT-ID: ', currentTextId)
 
 		let isPostSelected = false
 		let isTextSelected = false

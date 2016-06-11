@@ -16,6 +16,8 @@ class AddText extends React.Component {
 	}
 
 	render() {
+		// console.log("ADD-TEXT: ", this.props)
+
 		let input
 		const { addTextToPost } = this.props
 		// onKeyDown={this.handleSubmit(event, input)}

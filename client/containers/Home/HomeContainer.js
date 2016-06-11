@@ -2,8 +2,8 @@ import React from 'react'
 
 import PostApp from '../../components/PostApp/PostApp'
 
-class Home extends React.Component {
-  static displayName = 'Home'
+class HomeContainer extends React.Component {
+  static displayName = 'HomeContainer'
 
   render() {
     return (
@@ -14,5 +14,5 @@ class Home extends React.Component {
   }
 }
 
-export default Home
+export default HomeContainer
 

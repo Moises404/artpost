@@ -1,7 +1,8 @@
 //containers
-@import "../containers/App/_App";
-@import "../containers/Home/_Home";
-@import "../containers/About/_About";
+@import "../containers/App/_AppContainer";
+@import "../containers/Home/_HomeContainer";
+@import "../containers/About/_AboutContainer";
+
 //components
 @import "../components/Navigation/_Navigation";
 @import "../components/Logo/_Logo";
@@ -12,6 +13,6 @@
 @import "../components/Toolbar/Toolbar";
 @import "../components/AddPost/AddPost";
 @import "../components/AddText/AddText";
-@import "../components/Footer/Footer";
+@import "../components/Filter/Filter";
 
 @import "../components/Map/TextComponent/_TextComponent";

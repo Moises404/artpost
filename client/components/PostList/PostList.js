@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+// import mapValues from 'lodash/object/mapValues'
 import { isEmpty } from 'lodash'
 import Post from '../../components/Post/Post'
 
@@ -6,30 +7,34 @@ class PostList extends React.Component {
 	static displayName = 'PostList'
 
 	static propTypes = {
-		'setCurrentPost': PropTypes.func,
+		'selectPost': PropTypes.func,
 		'selectTextInPost': PropTypes.func,
-		'postList': PropTypes.any,
+		'post': PropTypes.any,
 		'visibilityFilter': PropTypes.string,
 		'dashboard': PropTypes.object
 	}
 
 	constructor(props) {
 		super(props)
-		const {
-			postList,
-			visibilityFilter
-		} = this.props
+		const { post } = this.props
+
+		// this.state = {
+		// 	postList: this.getVisiblePostList(post.posts, visibilityFilter)
+		// }
+
+		// ,visibilityFilter
 
 		this.state = {
-			postList: this.getVisiblePostList(postList, visibilityFilter)
+			postList: post.posts
 		}
 	}
 
-	componentWillReceiveProps(nextProps) {
-		const { postList, visibilityFilter } = nextProps
-		this.setState({
-			postList: this.getVisiblePostList(postList, visibilityFilter)
-		})
+	componentWillReceiveProps() {
+		// nextProps
+		// const { post, visibilityFilter } = nextProps
+		// this.setState({
+		// 	postList: this.getVisiblePostList(postList, visibilityFilter)
+		// })
 	}
 
 	getVisiblePostList(postList, filter) {
@@ -50,9 +55,9 @@ class PostList extends React.Component {
 	}
 
 	render() {
-		console.log('POST-LIST-COMP: ')
-		console.log(this.props)
-		const { setCurrentPost, selectTextInPost, dashboard } = this.props
+		console.log('RENDER: ')
+		console.log('POST-LIST-COMP: ', this.state.postList)
+		const { selectPost, dashboard } = this.props
 		let { postList } = this.state
 
 		if (!postList || isEmpty(postList)) {
@@ -65,15 +70,19 @@ class PostList extends React.Component {
 				{postList.map(post =>
 					<Post
 						key={post.postId}
+						id={post.postId}
+						faved={post.faved}
 						{...post}
 						{...dashboard}
-						onTextClick={() => selectTextInPost(post.textId)}
-						onPostClick={() => setCurrentPost(post.postId)}
+						onPostClick={() => selectPost(post.postId)}
 					/>
 				)}
 			</div>
 		)
 	}
 }
+
+// selectTextInPost,
+// onTextClick={() => selectTextInPost(post.textId)}
 
 export default PostList

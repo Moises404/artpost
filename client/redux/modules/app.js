@@ -1,27 +1,10 @@
-import * as types from '../constants/ActionTypes'
 import fetch from 'isomorphic-fetch'
 
-export function setClient(client) {
-  return (dispatch) => (
-     dispatch({
-      'type': types.SET_CLIENT,
-      client,
-    })
-  )
-}
-
-export function toggleSidebar(sideOpen) {
-  return (dispatch) => (
-    dispatch({
-      'type': types.TOGGLE_SIDEBAR,
-      sideOpen,
-    })
-  )
-}
+const FETCH_FIRE_SUCCESS = 'FETCH_FIRE_SUCCESS'
 
 export function fetchFireSuccess(json) {
   return {
-    'type': types.FETCH_FIRE_SUCCESS,
+    'type': FETCH_FIRE_SUCCESS,
     'fire': json,
   }
 }

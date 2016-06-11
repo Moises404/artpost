@@ -3,14 +3,15 @@ import {Provider} from 'react-redux'
 import React from 'react'
 import configureStore from '../../client/store/configureStore'
 import createLocation from 'history/lib/createLocation'
-import {fetchFire, setClient} from '../../client/actions/AppActions'
+import { fetchFire } from '../../client/redux/modules/app'
+import { setClient } from '../../client/redux/modules/client'
 import {renderToString} from 'react-dom/server'
 import routes from '../../client/routes'
 import MobileDetect from 'mobile-detect'
 
 const defaultCookie = '{"firstTime": true}'
-const cookieName = 'boiler404'
-const contact404 = '@artnotfound'
+const cookieName = 'Artpost'
+const contact404 = '@moisesnotfound'
 
 function hydrateInitialStore (req) {
   const md = new MobileDetect(req.headers['user-agent'])
@@ -43,11 +44,18 @@ export default function reactMiddleware (req, res) {
 
     return store.dispatch(hydrateInitialStore(req)).then(() => {
       const initialState = JSON.stringify(store.getState())
-      const content = renderToString(
-        <Provider store={store}>
-          <RouterContext {...renderProps} />
-        </Provider>
-      )
+      let content
+
+      try {
+        content = renderToString(
+          <Provider store={store}>
+            <RouterContext {...renderProps} />
+          </Provider>
+        )
+      } catch(e) {
+        console.log('ERROR RENDERING APP', e)
+        process.exit()
+      }
 
       return res.render('index', {content, assets, initialState})
     })

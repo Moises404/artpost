@@ -4,21 +4,21 @@ class AddPost extends React.Component {
 	static displayName = 'AddPost'
 
 	static propTypes = {
-		'addPost': PropTypes.func
+		'addPost': PropTypes.func,
+		'addTextToPost': PropTypes.func,
 	}
 
 	handleSubmit(event, node, cb) {
-		if (event.keyCode === 13) {
-			console.log('Enter!!')
-			console.log(node)
-			cb()
-		}
+		if (event.keyCode === 13) cb()
 	}
 
 	render() {
 		let input
 		const { addPost } = this.props
-		// onKeyDown={this.handleSubmit(event, input)}
+
+		// , addTextToPost
+		// addTextToPost(0, input.value)
+
 		return (
 			<div className="AddPost">
 				<input
@@ -32,7 +32,7 @@ class AddPost extends React.Component {
 						})
 					}}/>
 				<button onClick={() => {
-					addPost(input.value)
+					addPost()
 					input.value = ''
 				}}>
 					Add Post

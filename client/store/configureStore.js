@@ -1,5 +1,5 @@
-import {applyMiddleware, createStore} from 'redux'
-import rootReducer from '../reducers'
+import {applyMiddleware, createStore, combineReducers} from 'redux'
+import * as reducers from '../redux/modules'
 import thunkMiddleware from 'redux-thunk'
 
 export default function configureStore(initialState) {
@@ -9,5 +9,5 @@ export default function configureStore(initialState) {
 
   const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(create)
 
-  return createStoreWithMiddleware(rootReducer, initialState)
+  return createStoreWithMiddleware(combineReducers(reducers), initialState)
 }

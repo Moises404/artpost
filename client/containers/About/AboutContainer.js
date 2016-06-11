@@ -1,7 +1,7 @@
 import React from 'react'
 
-class About extends React.Component {
-  static displayName = 'About'
+class AboutContainer extends React.Component {
+  static displayName = 'AboutContainer'
 
   render() {
     return (
@@ -22,5 +22,5 @@ class About extends React.Component {
   }
 }
 
-export default About
+export default AboutContainer
 
