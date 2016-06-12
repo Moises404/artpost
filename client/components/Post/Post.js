@@ -13,7 +13,18 @@ class Post extends React.Component {
 		'postId': PropTypes.number,
 		'textId': PropTypes.number,
 		'currentPostId': PropTypes.any,
-		'currentTextId': PropTypes.any
+		'currentTextId': PropTypes.any,
+		'isPostSelectedStyle': PropTypes.func,
+		'isTextSelectedStyle': PropTypes.func,
+		'texts': PropTypes.array,
+		'textsById': PropTypes.object
+	}
+
+	constructor(props) {
+		super(props)
+
+		this.isPostSelectedStyle = this.isPostSelectedStyle.bind(this)
+		this.isTextSelectedStyle = this.isTextSelectedStyle.bind(this)
 	}
 
 	componentWillReceiveProps() {
@@ -23,20 +34,34 @@ class Post extends React.Component {
 		// console.log(nextProps.currentPostId)
 	}
 
+	isPostSelectedStyle(isPostSelected) {
+		console.log('IS-POST-SELECTED: ', isPostSelected)
+		return ({
+			borderColor: isPostSelected ? 'lime' : 'black',
+			borderWidth: '4px'
+		})
+	}
+
+	isTextSelectedStyle(isTextSelected) {
+		console.log('IS-TEXT-SELECTED: ', isTextSelected)
+		return ({
+			borderColor: isTextSelected ? 'lime' : 'black',
+			borderWidth: '4px'
+		})
+	}
 
 	render() {
+		console.log('POST-COMP: ', this.props)
+
 		const {
 			onPostClick, onTextClick,
-			completed, text, postId, textId,
-			currentPostId, currentTextId } = this.props
+			completed, postId, textId,
+			currentPostId, currentTextId,
+			texts, textsById } = this.props
 
 		const PostClasses = cn('Post', {
 			'complete': completed
 		})
-
-		// console.log('POST-ID: ', postId)
-		// console.log('CURRENT-POST-ID: ', currentPostId)
-		// console.log('CURRENT-TEXT-ID: ', currentTextId)
 
 		let isPostSelected = false
 		let isTextSelected = false
@@ -52,24 +77,17 @@ class Post extends React.Component {
 		return (
 			<div className={PostClasses}
 				onClick={onPostClick}
-				style={{
-					borderColor:
-						isPostSelected ?
-							'lime' :
-							'black',
-					borderWidth: '4px'
-				}}>
-				<div className="Text"
-					onClick={onTextClick}
-					style={{
-						borderColor:
-							isTextSelected ?
-								'lime' :
-								'black',
-						borderWidth: '4px'
-					}}>
-					{text}
-				</div>
+				style={this.isPostSelectedStyle(isPostSelected)}>
+
+				{texts.map(text =>
+					<div className="Text"
+						key={textsById[text].id}
+						id={textsById[text].id}
+						onClick={onTextClick}
+						style={this.isTextSelectedStyle(isTextSelected)}>
+						{textsById[text].text}
+					</div>
+				)}
 			</div>
 		)
 	}

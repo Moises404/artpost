@@ -56,25 +56,31 @@ class PostList extends React.Component {
 
 	render() {
 		console.log('RENDER: ')
-		console.log('POST-LIST-COMP: ', this.state.postList)
-		const { selectPost, dashboard } = this.props
+
+		// const { selectPost, dashboard } = this.props
+		const { postsById } = this.props.post
 		let { postList } = this.state
+
+		console.log('POST-LIST-COMP: ', postList)
+		console.log('POST-BY-ID-COMP: ', postsById)
 
 		if (!postList || isEmpty(postList)) {
 			console.log('POST-LIST: ', postList)
 			postList = []
 		}
 
+		// faved={post.faved}
+		// {...post}
+		// {...dashboard}
+
 		return (
 			<div className="PostList">
 				{postList.map(post =>
 					<Post
-						key={post.postId}
-						id={post.postId}
-						faved={post.faved}
-						{...post}
-						{...dashboard}
-						onPostClick={() => selectPost(post.postId)}
+						{...postsById[post]}
+						key={postsById[post].id}
+						id={postsById[post].id}
+						onPostClick={() => console.log(`ON-POST-CLICK`)}
 					/>
 				)}
 			</div>

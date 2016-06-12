@@ -35,7 +35,7 @@ export function addTagToPost(postId, tag) {
   }
 }
 
-export function addPost() {
+export function addPost(text) {
   const postId = nextPostId++
 
   return dispatch => {
@@ -44,6 +44,7 @@ export function addPost() {
       'type': ADD_POST,
       postId
     })
+    if (text) dispatch(addTextToPost(postId, text))
   }
 }
 
@@ -77,7 +78,8 @@ export default function post(state = initialPostState, action) {
         postsById: {
           ...state.postsById,
           [action.postId]: {
-            'id': action.postId
+            'id': action.postId,
+            'texts': []
           }
         }
       }
@@ -90,9 +92,19 @@ export default function post(state = initialPostState, action) {
     case ADD_TEXT_TO_POST :
       return {
         ...state,
-        [action.textId]: {
-          textId: action.textId,
-          text: action.text
+        postsById: {
+          ...state.postsById,
+          [action.postId]: {
+            'id': action.postId,
+            'texts': state.postsById[action.postId].texts.concat(action.textId),
+            'textsById': {
+              ...state.postsById[action.postId].textsById,
+              [action.textId]: {
+                'id': action.textId,
+                'text': action.text
+              }
+            }
+          }
         }
       }
     case FAVE_POST : {
