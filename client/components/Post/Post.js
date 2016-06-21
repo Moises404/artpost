@@ -17,7 +17,8 @@ class Post extends React.Component {
 		'isPostSelectedStyle': PropTypes.func,
 		'isTextSelectedStyle': PropTypes.func,
 		'texts': PropTypes.array,
-		'textsById': PropTypes.object
+		'textsById': PropTypes.object,
+		'layout': PropTypes.string
 	}
 
 	constructor(props) {
@@ -57,9 +58,11 @@ class Post extends React.Component {
 			onPostClick, onTextClick,
 			completed, postId, textId,
 			currentPostId, currentTextId,
-			texts, textsById } = this.props
+			texts, textsById, layout } = this.props
 
-		const PostClasses = cn('Post', {
+		console.log('POST-LAYOUT: ', layout)
+
+		const PostClasses = cn(`Post ${layout}`, {
 			'complete': completed
 		})
 

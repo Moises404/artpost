@@ -6,20 +6,31 @@ class Footer extends React.Component {
 
 	render() {
 		return (
-			<div className="Footer">
-				Show:
-				{" "}
-				<FilterLink filter="SHOW_ALL" {...this.props}>
-					All
-				</FilterLink>
-				{", "}
-				<FilterLink filter="SHOW_ACTIVE" {...this.props}>
-				  Active
-				</FilterLink>
-				{", "}
-				<FilterLink filter="SHOW_COMPLETED" {...this.props}>
-				  Completed
-				</FilterLink>
+			<div>
+				<div><b>Filter</b></div>
+				<div className="Footer">
+					Show:
+					{" "}
+					<FilterLink filter="SHOW_ALL" {...this.props}>
+						All
+					</FilterLink>
+					{", "}
+					<FilterLink filter="SHOW_FAVE" {...this.props}>
+					  Fave
+					</FilterLink>
+					{", "}
+					<FilterLink filter="SHOW_COMPLETED" {...this.props}>
+					  Other
+					  {", "}
+					</FilterLink>
+					<FilterLink filter="SHOW_COMPLETED" {...this.props}>
+					  Note
+					  {", "}
+					</FilterLink>
+					<FilterLink filter="SHOW_COMPLETED" {...this.props}>
+					  Project
+					</FilterLink>
+				</div>
 			</div>
 		)
 	}

@@ -1,5 +1,6 @@
 import React from 'react'
-import Toolbar from '../Toolbar/Toolbar'
+import ToolbarTop from '../ToolbarTop/ToolbarTop'
+import ToolbarSide from '../ToolbarSide/ToolbarSide'
 import PostList from '../PostList/PostList'
 
 class PostApp extends React.Component {
@@ -8,8 +9,11 @@ class PostApp extends React.Component {
 	render() {
 		return (
 			<div className="PostApp">
-				<Toolbar {...this.props} />
-				<PostList {...this.props}/>
+				<ToolbarTop {...this.props} />
+        <div className="PostApp-main">
+				  <PostList {...this.props}/>
+          <ToolbarSide {...this.props} layout={'column'}/>
+        </div>
 			</div>
 		)
 	}

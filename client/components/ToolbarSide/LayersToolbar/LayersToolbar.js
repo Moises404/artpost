@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react'
 // import mapValues from 'lodash/object/mapValues'
 import { isEmpty } from 'lodash'
-import Post from '../../components/Post/Post'
+import Post from '../../../components/Post/Post'
 
-class PostList extends React.Component {
+class LayersToolbar extends React.Component {
 	static displayName = 'PostList'
 
 	static propTypes = {
@@ -75,16 +75,19 @@ class PostList extends React.Component {
 		// {...dashboard}
 
 		return (
-			<div className={`PostList ${this.props.layout}`}>
-				{postList.map(post =>
-					<Post
-						{...postsById[post]}
-						key={postsById[post].id}
-						id={postsById[post].id}
-						layout={this.props.layout}
-						onPostClick={() => console.log(`ON-POST-CLICK`)}
-					/>
-				)}
+			<div>
+				<div>Layers</div>
+				<div className={`PostToolbar ${this.props.layout}`}>
+					{postList.map(post =>
+						<Post
+							{...postsById[post]}
+							key={postsById[post].id}
+							id={postsById[post].id}
+							layout={this.props.layout}
+							onPostClick={() => console.log(`ON-POST-CLICK`)}
+						/>
+					)}
+				</div>
 			</div>
 		)
 	}
@@ -93,4 +96,4 @@ class PostList extends React.Component {
 // selectTextInPost,
 // onTextClick={() => selectTextInPost(post.textId)}
 
-export default PostList
+export default LayersToolbar

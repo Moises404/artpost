@@ -1,11 +1,12 @@
-.Toolbar {
-  display: block;
+.ToolbarTop {
+  @include display(flex);
+  @include justify-content(space-around);
   position: relative;
   float: left;
   width: 100%;
   margin: 0;
   padding: 0;
-  height: auto;
+  height: 180px;
   padding: 10px;
   border-bottom: 1px solid black;
 }

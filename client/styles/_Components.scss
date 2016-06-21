@@ -7,12 +7,15 @@
 @import "../components/Navigation/_Navigation";
 @import "../components/Logo/_Logo";
 
-@import "../components/PostApp/PostApp";
-@import "../components/PostList/PostList";
-@import "../components/Post/Post";
-@import "../components/Toolbar/Toolbar";
-@import "../components/AddPost/AddPost";
-@import "../components/AddText/AddText";
-@import "../components/Filter/Filter";
+@import "../components/PostApp/_PostApp";
+@import "../components/PostList/_PostList";
+@import "../components/Post/_Post";
+@import "../components/AddPost/_AddPost";
+@import "../components/AddText/_AddText";
+@import "../components/AddTag/_AddTag";
+@import "../components/Filter/_Filter";
 
-@import "../components/Map/TextComponent/_TextComponent";
+@import "../components/ToolbarTop/_ToolbarTop";
+@import "../components/ToolbarSide/_ToolbarSide";
+@import "../components/ToolbarSide/PostToolbar/_PostToolbar";
+@import "../components/ToolbarSide/LayersToolbar/_LayersToolbar";
